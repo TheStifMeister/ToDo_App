@@ -1,0 +1,22 @@
+#root {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: rgba(68,70,84);
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  background-color: rgb(148, 153, 181);
+}
+
+/* Colore del thumb della scrollbar */
+::-webkit-scrollbar-thumb {
+  background-color: #2d72d2;
+  border-radius: 6px;
+}
+
+/* Cambia il colore del thumb al passaggio del mouse */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #2762b3;
+}
