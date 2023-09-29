@@ -1,8 +1,10 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { FormGroup, InputGroup, HTMLSelect, Button } from '@blueprintjs/core'
+import { AuthContext } from './AuthContext'
 
 const TaskDetail = ({ selectedTask, setSelectedTask }) => {
+  const { user } = useContext(AuthContext)
   const [isEditing, setIsEditing] = useState(false)
   const [editedTask, setEditedTask] = useState(selectedTask)
 
@@ -21,7 +23,7 @@ const TaskDetail = ({ selectedTask, setSelectedTask }) => {
 
   return (
     <div className="w-4/5 h-screen bg-white p-4">
-      {selectedTask ? (
+      { user && selectedTask ? (
         <>
           <div className="font-bold text-xl">
             {isEditing ? (
@@ -37,7 +39,7 @@ const TaskDetail = ({ selectedTask, setSelectedTask }) => {
               <FormGroup label="Descrizione">
                 <InputGroup
                   value={editedTask.description}
-                  onChange={(e) => setEditedTask({...editedTask, description: e.target.value,})
+                  onChange={(e) => setEditedTask({ ...editedTask, description: e.target.value, })
                   }
                 />
               </FormGroup>
@@ -46,15 +48,17 @@ const TaskDetail = ({ selectedTask, setSelectedTask }) => {
           <div className="mt-4">
             {isEditing ? (
               <>
-                <HTMLSelect
-                  value={editedTask.status}
-                  onChange={(e) => handleStatusChange(e.target.value)}
-                >
-                  <option value="To Do">To Do</option>
-                  <option value="In Progress">In Progress</option>
-                  <option value="Completed">Completed</option>
-                </HTMLSelect>
-                <Button onClick={handleSaveClick}>Salva</Button>
+                <FormGroup label="Stato">
+                  <HTMLSelect
+                    value={editedTask.status}
+                    onChange={(e) => handleStatusChange(e.target.value)}
+                  >
+                    <option value="To Do">To Do</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Completed">Completed</option>
+                  </HTMLSelect>
+                </FormGroup>
+                <Button intent="success" onClick={handleSaveClick}>Salva</Button>
               </>
             ) : (
               <div>Status: {selectedTask.status}</div>

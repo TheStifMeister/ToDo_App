@@ -1,7 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Button, Navbar } from "@blueprintjs/core"
 import "@blueprintjs/core/lib/css/blueprint.css"
+
 
 const navbarHeader = () => {
 
@@ -13,17 +15,27 @@ const navbarHeader = () => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: '#222034',
+            backgroundColor: '#1f2937',
             paddingLeft: '15px',
             paddingRight: '15px'
         }}>
-            <Button icon="menu" className='bp5-minimal' style={{ marginRight: '10px', color: '#fff' }} />
             <Navbar.Heading
                 style={{ color: '#fff', position: 'relative', marginTop: '-2px' }}>
-                TODO App
-            </Navbar.Heading>            
+                <Link to="/">
+                    <Button minimal text='TodoApp' style={{ color: '#fff' }}/>
+                </Link>
+            </Navbar.Heading>
+            <div className='flex justify-end space-x-4 p-4' >
+                <Link to="/login">
+                    <Button minimal intent='primary' text='Login' style={{ color: '#fff' }}/>
+                </Link>
+                <Link to="/register">
+                    <Button minimal intent='primary' text='Register' style={{ color: '#fff' }} />
+                </Link>
+            </div>
+                        
         </Navbar>
-    );
+    )
 }
 
 export default navbarHeader
